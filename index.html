@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Ödevleri - GOIT-JS-HW-02</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .task-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .task-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .task-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .task-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .run-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .run-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .console-output {
+            background: #1e1e1e;
+            color: #00ff41;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin-top: 30px;
+            min-height: 200px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .console-title {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .console-line {
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-left: 3px solid #00ff41;
+            padding-left: 10px;
+        }
+
+        .clear-button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .clear-button:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .task-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 JavaScript Ödevleri</h1>
+            <p>GOIT-JS-HW-02 - Fonksiyonlar ve Koşullar</p>
+        </div>
+        
+        <div class="content">
+            <div class="task-grid">
+                <div class="task-card">
+                    <div class="task-title">📦 Görev 1: Droid Siparişleri</div>
+                    <div class="task-description">
+                        Tamir droidleri satın alımı için makeTransaction fonksiyonu. 
+                        Miktar, fiyat ve kredi kontrolü yapar.
+                    </div>
+                    <button class="run-button" onclick="runTask1()">Görevi Çalıştır</button>
+                </div>
+                
+                <div class="task-card">
+                    <div class="task-title">✂️ Görev 2: Mesaj Biçimlendirme</div>
+                    <div class="task-description">
+                        formatMessage fonksiyonu ile mesajları maksimum uzunluğa göre 
+                        kısaltma ve "..." ekleme işlemi.
+                    </div>
+                    <button class="run-button" onclick="runTask2()">Görevi Çalıştır</button>
+                </div>
+                
+                <div class="task-card">
+                    <div class="task-title">🛡️ Görev 3: Spam Kontrolü</div>
+                    <div class="task-description">
+                        checkForSpam fonksiyonu ile mesajlarda "spam" ve "sale" 
+                        kelimelerini tespit etme.
+                    </div>
+                    <button class="run-button" onclick="runTask3()">Görevi Çalıştır</button>
+                </div>
+                
+                <div class="task-card">
+                    <div class="task-title">🚚 Görev 4: Teslimat Maliyeti</div>
+                    <div class="task-description">
+                        getShippingCost fonksiyonu ile switch ifadesi kullanarak 
+                        ülkelere göre teslimat maliyeti hesaplama.
+                    </div>
+                    <button class="run-button" onclick="runTask4()">Görevi Çalıştır</button>
+                </div>
+            </div>
+            
+            <div class="console-output">
+                <div class="console-title">🖥️ Konsol Çıktısı:</div>
+                <div id="console-content">Bir görevi çalıştırmak için yukarıdaki butonlara tıklayın...</div>
+                <button class="clear-button" onclick="clearConsole()">Konsolu Temizle</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Konsol çıktısını yakalamak için
+        const consoleContent = document.getElementById('console-content');
+        let originalConsoleLog = console.log;
+        
+        function addToConsole(message) {
+            const line = document.createElement('div');
+            line.className = 'console-line';
+            line.textContent = '> ' + message;
+            consoleContent.appendChild(line);
+        }
+        
+        function clearConsole() {
+            consoleContent.innerHTML = 'Konsol temizlendi...';
+        }
+
+        // Görev 1: Droid Siparişleri
+        function makeTransaction(quantity, pricePerDroid, customerCredits) {
+            const totalPrice = quantity * pricePerDroid;
+            
+            if (totalPrice > customerCredits) {
+                return "Insufficient funds!";
+            } else {
+                return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+            }
+        }
+
+        function runTask1() {
+            clearConsole();
+            addToConsole('=== GÖREV 1: DROİD SİPARİŞLERİ ===');
+            addToConsole('makeTransaction(5, 3000, 23000): ' + makeTransaction(5, 3000, 23000));
+            addToConsole('makeTransaction(3, 1000, 15000): ' + makeTransaction(3, 1000, 15000));
+            addToConsole('makeTransaction(10, 5000, 8000): ' + makeTransaction(10, 5000, 8000));
+            addToConsole('makeTransaction(8, 2000, 10000): ' + makeTransaction(8, 2000, 10000));
+            addToConsole('makeTransaction(10, 500, 5000): ' + makeTransaction(10, 500, 5000));
+        }
+
+        // Görev 2: Mesaj Biçimlendirme
+        function formatMessage(message, maxLength) {
+            if (message.length <= maxLength) {
+                return message;
+            } else {
+                return message.slice(0, maxLength) + "...";
+            }
+        }
+
+        function runTask2() {
+            clearConsole();
+            addToConsole('=== GÖREV 2: MESAJ BİÇİMLENDİRME ===');
+            addToConsole('formatMessage("Curabitur ligula sapien", 16): ' + formatMessage("Curabitur ligula sapien", 16));
+            addToConsole('formatMessage("Curabitur ligula sapien", 23): ' + formatMessage("Curabitur ligula sapien", 23));
+            addToConsole('formatMessage("Vestibulum facilisis purus nec", 20): ' + formatMessage("Vestibulum facilisis purus nec", 20));
+            addToConsole('formatMessage("Vestibulum facilisis purus nec", 30): ' + formatMessage("Vestibulum facilisis purus nec", 30));
+            addToConsole('formatMessage("Nunc sed turpis a felis in nunc fringilla", 15): ' + formatMessage("Nunc sed turpis a felis in nunc fringilla", 15));
+            addToConsole('formatMessage("Nunc sed turpis a felis in nunc fringilla", 41): ' + formatMessage("Nunc sed turpis a felis in nunc fringilla", 41));
+        }
+
+        // Görev 3: Spam Kontrolü
+        function checkForSpam(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes("spam") || lowerMessage.includes("sale")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function runTask3() {
+            clearConsole();
+            addToConsole('=== GÖREV 3: SPAM KONTROLÜ ===');
+            addToConsole('checkForSpam("Latest technology news"): ' + checkForSpam("Latest technology news"));
+            addToConsole('checkForSpam("JavaScript weekly newsletter"): ' + checkForSpam("JavaScript weekly newsletter"));
+            addToConsole('checkForSpam("Get best sale offers now!"): ' + checkForSpam("Get best sale offers now!"));
+            addToConsole('checkForSpam("Amazing SalE, only tonight!"): ' + checkForSpam("Amazing SalE, only tonight!"));
+            addToConsole('checkForSpam("Trust me, this is not a spam message"): ' + checkForSpam("Trust me, this is not a spam message"));
+            addToConsole('checkForSpam("Get rid of sPaM emails. Our book in on sale!"): ' + checkForSpam("Get rid of sPaM emails. Our book in on sale!"));
+            addToConsole('checkForSpam("[SPAM] How to earn fast money?"): ' + checkForSpam("[SPAM] How to earn fast money?"));
+        }
+
+        // Görev 4: Teslimat Maliyeti
+        function getShippingCost(country) {
+            switch (country) {
+                case "China":
+                    return `Shipping to ${country} will cost 100 credits`;
+                case "Chile":
+                    return `Shipping to ${country} will cost 250 credits`;
+                case "Australia":
+                    return `Shipping to ${country} will cost 170 credits`;
+                case "Jamaica":
+                    return `Shipping to ${country} will cost 120 credits`;
+                default:
+                    return "Sorry, there is no delivery to your country";
+            }
+        }
+
+        function runTask4() {
+            clearConsole();
+            addToConsole('=== GÖREV 4: TESLİMAT MALİYETİ ===');
+            addToConsole('getShippingCost("Australia"): ' + getShippingCost("Australia"));
+            addToConsole('getShippingCost("Germany"): ' + getShippingCost("Germany"));
+            addToConsole('getShippingCost("China"): ' + getShippingCost("China"));
+            addToConsole('getShippingCost("Chile"): ' + getShippingCost("Chile"));
+            addToConsole('getShippingCost("Jamaica"): ' + getShippingCost("Jamaica"));
+            addToConsole('getShippingCost("Sweden"): ' + getShippingCost("Sweden"));
+        }
+    </script>
+</body>
+</html>
